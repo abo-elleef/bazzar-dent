@@ -1,0 +1,15 @@
+<div class="p-8">
+  <h2 class="text-md text-3xl">Related Products</h2>
+  <div class="grid grid-cols-4 gap-2">
+    <% product.related_products.map do |related_product| %>
+      <div class="">
+        <%= image_tag "product_#{related_product.id}", alt: 'product', class: "max-h-48" %>
+        <div class="">
+          <p> <%= related_product.name %> </p>
+          <p> <%= related_product.desc %> </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+</div>

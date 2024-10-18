@@ -1,0 +1,90 @@
+<div id="<%= dom_id product %>">
+  <div class="relative">
+    <%= image_tag "https://dentac.com/dacegug/2024/01/Parion_.png", class: 'min-h-[400px]' %>
+    <div class="absolute top-[15%] left-[10%]">
+      <h3 class="text-md text-6xl"><%= product.name %></h3>
+      <p class="text-md text-3xl my-8"><%= product.desc %></p>
+    </div>
+  </div>
+    
+  <% if product.highlights.present?%>
+    <div>
+      <p class="text-center p-4 text-md text-3xl text-emerald-300">
+        <%= product.highlight_title %>
+      </p>
+      <p class="text-center p-4">
+        <%= product.highlight_desc %>
+      </p>
+    </div>
+    <div id="highlights" class="flex flex-row" >
+      <div class="flex justify-center max-h-[400px]">
+        <%= image_tag "product_3.png", class:"max-h-full"%>
+      </div>
+      <div class="">
+        <ul>
+          <% product.highlights.map do |highlight|%>
+            <li class="flex flex-row">
+              <%= image_tag "highlight.svg", class: "max-w-[12%]"%>
+              <p class="p-4 text-md font-medium">
+                <%= highlight.title %>
+              </p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>  
+  <% end %>
+
+  <% if product.medias.present? %>
+    <div class="grid grid-cols-2 gap-10 mt-8 mx-8">
+      <% product.medias.where(display: 'grid', kind: 'image').order(:order).map do |media| %>
+        <div class="">
+          <div class="">
+            <h3 class="py-4 text-md text-3xl"><%= media.title %></h3>
+            <p> <%= media.desc %> </p>
+          </div>
+          <%= image_tag media.url, class: 'h-2/4' if media.url.present?  %>
+        </div>
+
+      <% end %>
+    </div>
+
+
+    <div class="m-8">
+      <% product.medias.where(display: 'hero', kind: 'video').order(:order).map do |media| %>
+        <div class="basis-full">
+          <h3 class="py-4 text-md text-3xl">
+            <%= media.title %>
+          </h3>
+          <p> <%= media.desc %> </p>
+          <div class="text-center">
+            <iframe class="w-full h-full min-h-[500px]" src="<%= media.url %>" title="<%= media.title %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="m-8">
+    <table class="border-collapse table-fixed w-full border">
+      <thead class="bg-emerald-300">
+        <th colspan="2" class="border-b dark:border-slate-600 font-medium p-4 text-slate-900 dark:text-slate-200  font-medium	">
+          Features
+        </th>
+      </thead>
+      <tbody class="bg-white dark:bg-slate-800 ">
+        <% product.features.map do |feature| %>
+        <tr>
+          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-900 dark:text-slate-400 text-center bg-emerald-300 font-medium	">
+            <%= feature.key %>
+          </td>
+          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400 text-center">
+            <%= feature.value %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
