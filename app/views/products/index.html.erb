@@ -6,16 +6,24 @@
   <% content_for :title, "Products" %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Products</h1>
-    <%= link_to "New product", new_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl px-8 py-4">Products</h1>
+    <%# link_to "New product", new_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="products" class="min-w-full">
+  <div id="products" class="grid grid-cols-3 gap-4 p-4">
     <% @products.each do |product| %>
-      <%= render product %>
-      <p>
+      <div id="<%= dom_id product %>">
+        <div class="relative">
+          <%= image_tag "product_banar_#{product.id}.png", class: 'min-h-[300px] w-full' %>
+          <div class="absolute top-[15%] left-[10%]">
+            <h3 class="text-md text-6xl"><%= product.name %></h3>
+            <p class="text-md text-3xl my-8"><%= product.desc %></p>
+          </div>
+        </div>
+      </div>
+      <!--  <p>
         <%= link_to "Show this product", product, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
+      </p> -->
     <% end %>
   </div>
 </div>
