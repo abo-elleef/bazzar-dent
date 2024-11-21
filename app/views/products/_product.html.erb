@@ -63,6 +63,20 @@
         </div>
       <% end %>
     </div>
+
+    <div class="m-8">
+      <% product.medias.where(display: 'hero', kind: 'pdf').order(:order).map do |media| %>
+        <div class="basis-full">
+          <h3 class="py-4 text-md text-3xl">
+            <%= media.title %>
+          </h3>
+          <p> <%= media.desc %> </p>
+          <div class="text-center">
+            <iframe src="<%= media.url %>" title='SOME_TITLE' class="w-full h-full min-h-[500px]" /></iframe>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
   <div class="m-8">
     <table class="border-collapse table-fixed w-full border">
