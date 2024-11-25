@@ -1,12 +1,13 @@
 <div class="p-8">
-  <h2 class="text-md text-3xl">Related Products</h2>
-  <div class="grid grid-cols-4 gap-2">
+  <h2 class="bg-[#c3d9ff] border-b dark:border-slate-600 font-medium p-4 text-slate-900 dark:text-slate-200 font-medium text-md text-3xl underline">Related Products</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <% product.related_products.map do |related_product| %>
       <div class="">
-        <%= image_tag "product_#{related_product.id}", alt: 'product', class: "max-h-48" %>
-        <div class="">
-          <p> <%= related_product.name %> </p>
-          <p> <%= related_product.desc %> </p>
+        <%= image_tag "product_#{related_product.id}", alt: 'product', class: "max-h-48 mx-auto pt-4" %>
+        <div class="border-t-2 border-emerald-300">
+          <p class="px-2 mt-2 font-bold text-xl" > <%= related_product.name %> </p>
+          <p class="px-2 text-lg"> <%# related_product.price %> </p>
+          <p class="px-2 text-lg"> <%= related_product.desc %> </p>
         </div>
       </div>
     <% end %>

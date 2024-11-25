@@ -4,7 +4,8 @@ class Product < ApplicationRecord
  has_many :medias, dependent: :destroy
 
  def related_products
-    Product.where.not(id: id).limit(4)
+   #  Product.where.not(id: id).limit(4)
+   Product.all
  end
 
  def self.ransackable_associations(auth_object = nil)
